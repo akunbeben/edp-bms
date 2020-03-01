@@ -22,7 +22,12 @@
                         <form action="<?= base_url('kunjungan/tambah/'); ?>" method="post">
                             <div class="form-group">
                                 <label for="toko">Toko</label>
-                                <input type="text" class="form-control" id="toko" name="toko">
+                                <select class="form-control select-produk" id="toko" name="toko" required>
+                                    <option value=""> -- Pilih Toko -- </option>
+                                    <?php foreach ($toko as $tk) : ?>
+                                    <option value="<?= $tk->id; ?>"><?= $tk->kode_toko . ' - ' . $tk->nama_toko; ?></option>
+                                    <?php endforeach; ?>
+                                </select>
                             </div>
                             <div class="form-group">
                                 <label for="keperluan">Keperluan</label>

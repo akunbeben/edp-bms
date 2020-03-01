@@ -32,7 +32,7 @@ class Follow_up extends CI_Controller {
                 'title'     => 'Follow-up Complaint',
                 'sub_title' => 'Proses',
                 'complaint' => $this->ComplaintModel->gets($id)->row(),
-                'teknisi'   => $this->TeknisiModel->get()->result() 
+                'teknisi'   => $this->TeknisiModel->get($this->session->userdata('EDPBMS-id_teknisi'))->row() 
             ];
             $this->form_validation->set_rules('teknisi', 'ID Teknisi', 'required');
             $this->form_validation->set_rules('solusi', 'Solusi', 'required');

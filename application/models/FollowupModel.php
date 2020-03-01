@@ -10,10 +10,11 @@ class FollowupModel extends CI_Model {
 
     public function get()
     {
-        $this->db->select('follup.*, complaint.id_complaint, complaint.toko, complaint.status, teknisi.nama, spareparts.nama nama_spareparts');
+        $this->db->select('follup.*, complaint.id_complaint, toko.kode_toko, toko.nama_toko, complaint.status, teknisi.nama, spareparts.nama nama_spareparts');
         $this->db->from('follup');
         $this->db->join('complaint', 'follup.complaint = complaint.id');
         $this->db->join('teknisi', 'follup.teknisi = teknisi.id');
+        $this->db->join('toko', 'complaint.toko = toko.id');
         $this->db->join('spareparts_keluar', 'follup.id = spareparts_keluar.follup', 'left');
         $this->db->join('spareparts', 'spareparts_keluar.spareparts = spareparts.id', 'left');
         return $this->db->get();

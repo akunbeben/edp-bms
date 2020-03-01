@@ -8,6 +8,7 @@ class Kunjungan extends CI_Controller {
         parent::__construct();
         is_not_login();
         $this->load->model('KunjunganModel');
+        $this->load->model('TokoModel');
     }
 
     public function index()
@@ -15,7 +16,7 @@ class Kunjungan extends CI_Controller {
         $data = [
             'title'         => 'Kunjungan',
             'sub_title'     => 'Daftar',
-            'kunjungan'     => $this->KunjunganModel->get()->result()
+            'kunjungan'     => $this->KunjunganModel->get($id = null, $this->session->userdata('EDPBMS-nama'))->result()
         ];
         $this->template->load('layout/template', 'kunjungan/index', $data);
     }
@@ -24,7 +25,8 @@ class Kunjungan extends CI_Controller {
     {
         $data = [
             'title'         => 'Kunjungan',
-            'sub_title'     => 'Tambah'
+            'sub_title'     => 'Tambah',
+            'toko'          => $this->TokoModel->get()->result()
         ];
 
         $this->form_validation->set_rules('toko', 'Toko', 'required');
@@ -50,7 +52,8 @@ class Kunjungan extends CI_Controller {
         $data = [
             'title'         => 'Kunjungan',
             'sub_title'     => 'Edit',
-            'kunjungan'     => $this->KunjunganModel->get($id)->row()
+            'kunjungan'     => $this->KunjunganModel->get($id, $this->session->userdata('EDPBMS-nama'))->row(),
+            'toko'          => $this->TokoModel->get()->result()
         ];
 
         $this->form_validation->set_rules('toko', 'Toko', 'required');

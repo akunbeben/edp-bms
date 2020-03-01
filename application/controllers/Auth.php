@@ -48,10 +48,13 @@ class Auth extends CI_Controller
             if (password_verify($password, $getUser->password)) {
                 $data_session   = [
                     'EDPBMS-username'   => $username,
+                    'EDPBMS-nik'        => $getUser->nik,
                     'EDPBMS-nama'       => $getUser->nama,
                     'EDPBMS-foto'       => $getUser->foto,
                     'EDPBMS-jabatan'    => $getUser->jabatan,
-                    'EDPBMS-x-Token'    => password_hash($username, PASSWORD_DEFAULT)
+                    'EDPBMS-x-Token'    => password_hash($username, PASSWORD_DEFAULT),
+                    'EDPBMS-level'      => $getUser->level,
+                    'EDPBMS-id_teknisi' => $getUser->id_teknisi
                 ];
                 $this->session->set_userdata($data_session);
                 redirect('admin/');

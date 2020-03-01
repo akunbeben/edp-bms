@@ -24,35 +24,28 @@
                             <h1 class="card-title">Data <?= $title; ?></h1>
                         </div>
                         <div class="float-right">
-                            <a class="btn btn-dark btn-sm" href="<?= base_url('complaint/tambah/'); ?>"><i class="fa fa-plus"></i></a>
+                            <a class="btn btn-dark btn-sm" href="<?= base_url('users/tambah/'); ?>"><i class="fa fa-plus"></i></a>
                         </div>
                     </div>
                     <div class="card-body">
                         <table id="complaintTable" class="table table-hover table-bordered">
                             <thead>
                                 <tr>
-                                    <th>ID Complaint</th>
-                                    <th>Tanggal</th>
-                                    <th>Toko</th>
-                                    <th>Keluhan</th>
-                                    <th>Catatan</th>
-                                    <th>Status</th>
+                                    <th>Nama Lengkap</th>
+                                    <th>Username</th>
+                                    <th>Level</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                            <?php foreach ($complaint as $cmp) : ?>
+                            <?php foreach ($users as $usr) : ?>
                                 <tr>
-                                    <td><?= $cmp->id_complaint; ?></td>
-                                    <td><?= date('d M Y H:i:s', strtotime($cmp->tanggal)); ?></td>
-                                    <td><?= $cmp->kode_toko . ' - ' . $cmp->nama_toko; ?></td>
-                                    <td><?= $cmp->keluhan; ?></td>
-                                    <td><?= $cmp->catatan; ?></td>
-                                    <td class="text-center"><?= $cmp->status == 0 ? '<span class="badge bg-danger">Pending</span>' : ($cmp->status == 1 ? '<span class="badge bg-success">Done</span>' : ''); ?></td>
+                                    <td><?= $usr->nama; ?></td>
+                                    <td><?= $usr->username; ?></td>
+                                    <td><?= $usr->level == 1 ? 'Administrator' : 'Teknisi'; ?></td>
                                     <td class="text-center" style="width: 120px;">
-                                        <a class="btn btn-success btn-sm" href="<?= base_url('complaint/proses/') . $cmp->id; ?>"><i class="fas fa-paper-plane"></i></a>
-                                        <a class="btn btn-warning btn-sm" href="<?= base_url('complaint/edit/') . $cmp->id; ?>"><i class="fas fa-pencil-alt"></i></a>
-                                        <a class="btn btn-danger btn-sm" href="<?= base_url('complaint/hapus/') . $cmp->id; ?>"><i class="fas fa-trash"></i></a>
+                                        <a class="btn btn-warning btn-sm" href="<?= base_url('users/edit/') . $usr->id; ?>"><i class="fas fa-pencil-alt"></i></a>
+                                        <a class="btn btn-danger btn-sm" href="<?= base_url('users/hapus/') . $usr->id; ?>"><i class="fas fa-trash"></i></a>
                                     </td>
                                 </tr>
                             <?php endforeach; ?>

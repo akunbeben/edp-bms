@@ -15,23 +15,18 @@
 </section>
 <section class="content">
     <div class="container-fluid">
-        <div class="row">
-            <div class="col-sm-12">
+        <div class="row justify-content-center">
+            <div class="col-sm-6">
                 <div class="card">
                     <div class="card-body">
-                        <form action="<?= base_url('kunjungan/edit/' . $kunjungan->id); ?>" method="post">
+                        <form action="<?= base_url('toko/edit/') . $toko->id; ?>" method="post">
                             <div class="form-group">
-                                <label for="toko">Toko</label>
-                                <select class="form-control select-produk" id="toko" name="toko" required>
-                                    <option value=""> -- Pilih Toko -- </option>
-                                    <?php foreach ($toko as $tk) : ?>
-                                    <option value="<?= $tk->id; ?>" <?= $tk->id == $kunjungan->toko ? 'selected' : ''; ?>><?= $tk->kode_toko . ' - ' . $tk->nama_toko; ?></option>
-                                    <?php endforeach; ?>
-                                </select>
+                                <label for="kode_toko">Kode Toko</label>
+                                <input type="text" class="form-control" id="kode_toko" name="kode_toko" value="<?=$toko->kode_toko; ?>" required>
                             </div>
                             <div class="form-group">
-                                <label for="keperluan">Keperluan</label>
-                                <input type="text" class="form-control" id="keperluan" name="keperluan" value="<?= $kunjungan->keperluan; ?>">
+                                <label for="nama_toko">Nama Toko</label>
+                                <input type="text" class="form-control" id="nama_toko" name="nama_toko" value="<?=$toko->nama_toko; ?>" required>
                             </div>
 
                             <div class="row justify-content-end">

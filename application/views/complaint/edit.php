@@ -31,7 +31,12 @@
                             </div>
                             <div class="form-group">
                                 <label for="toko">Toko</label>
-                                <input type="text" class="form-control" id="toko" name="toko" value="<?= $complaint->toko; ?>">
+                                <select class="form-control select-produk" id="toko" name="toko" required>
+                                    <option value=""> -- Pilih Toko -- </option>
+                                    <?php foreach ($toko as $tk) : ?>
+                                    <option value="<?= $tk->id; ?>" <?= $tk->kode_toko == $complaint->kode_toko ? 'selected' : '' ?>><?= $tk->kode_toko . ' - ' . $tk->nama_toko; ?></option>
+                                    <?php endforeach; ?>
+                                </select>
                             </div>
                             <div class="form-group">
                                 <label for="keluhan">Keluhan</label>

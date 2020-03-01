@@ -41,7 +41,7 @@
                             <?php foreach ($follup as $fol) : ?>
                                 <tr>
                                     <td><?= $fol->id_complaint; ?></td>
-                                    <td><?= $fol->toko; ?></td>
+                                    <td><?= $fol->kode_toko . ' - ' . $fol->nama_toko; ?></td>
                                     <td><?= $fol->nama; ?></td>
                                     <td><?= $fol->solusi; ?></td>
                                     <td><?= date('d M Y H:i:s', strtotime($fol->diselesaikan)); ?></td>

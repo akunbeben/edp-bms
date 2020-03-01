@@ -15,7 +15,8 @@
 <div class="page" style="font-size: 7pt">
 <table style="width: 100%;" class="header">
 <tr>
-<td><h1 style="text-align: center"><?= $title; ?></h1></td>
+<td><h1 style="text-align: right"><?= $title; ?></h1></td>
+<td style="text-align: right"><img src="assets/idm.png" alt="IDM Logo" style="max-width: 100px;"></td>
 </tr>
 </table>
 
@@ -23,7 +24,6 @@
 <tr>
 <td>No. Doc: <strong><?= $header->doc_no; ?></strong></td>
 <td>Dibuat oleh: <strong><?= $header->created_by; ?></strong></td>
-<!-- <td rowspan="2"><img src="<?= site_url('assets/') . 'idm.png'; ?>" alt="IDM Logo"></td> -->
 </tr>
 
 <tr>
@@ -51,7 +51,11 @@
 <th style="text-align: center">Catatan</th>
 </tr>
 
-<?php $no = 1;
+<?php if ($body == null) : ?>
+<tr><td colspan="6" style="text-align: center;"><strong> Tidak ada data </strong></td></tr>
+<?php else : ?>
+<?php
+$no = 1;
 foreach ($body as $bdy) : ?>
 <tr>
 <td style="text-align: center"><?= $no++; ?></td>
@@ -62,6 +66,7 @@ foreach ($body as $bdy) : ?>
 <td><?= $bdy->catatan; ?></td>
 </tr>
 <?php endforeach; ?>
+<?php endif; ?>
 </tbody>
 
 

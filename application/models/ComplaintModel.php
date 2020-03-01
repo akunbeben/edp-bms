@@ -5,29 +5,38 @@ class ComplaintModel extends CI_Model{
 
     public function get($id = null)
     {
+        $this->db->select('complaint.id, complaint.id_complaint, complaint.tanggal, toko.nama_toko, toko.kode_toko, complaint.keluhan, complaint.catatan, complaint.status');
+        $this->db->from('complaint');
+        $this->db->join('toko', 'complaint.toko = toko.id');
         if ($id !== null) {
-            $this->db->where('id', $id);
+            $this->db->where('complaint.id', $id);
         }
-        $this->db->where('aktif', 0);
+        $this->db->where('complaint.aktif', 0);
         $this->db->where('status', 0);
-        return $this->db->get('complaint');
+        return $this->db->get();
     }
 
     public function get_join()
     {
-        $this->db->select('complaint.*, follup.diselesaikan, follup.solusi, teknisi.nama');
+        $this->db->select('complaint.*, follup.diselesaikan, follup.solusi, teknisi.nama, toko.kode_toko, toko.nama_toko');
         $this->db->from('complaint');
         $this->db->join('follup', 'complaint.id = follup.complaint');
+        $this->db->join('toko', 'complaint.toko = toko.id');
         $this->db->join('teknisi', 'follup.teknisi = teknisi.id');
         return $this->db->get();
     }
 
     public function gets($id = null)
     {
+        $this->db->select('complaint.id, complaint.id_complaint, complaint.tanggal, toko.nama_toko, toko.kode_toko, complaint.keluhan, complaint.catatan, complaint.status');
+        $this->db->from('complaint');
+        $this->db->join('toko', 'complaint.toko = toko.id');
         if ($id !== null) {
-            $this->db->where('id', $id);
+            $this->db->where('complaint.id', $id);
         }
-        return $this->db->get('complaint');
+        $this->db->where('complaint.aktif', 0);
+        $this->db->where('status', 0);
+        return $this->db->get();
     }
 
     public function save($complaint)

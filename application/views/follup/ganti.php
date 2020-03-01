@@ -22,7 +22,7 @@
                         <form action="" method="post">
                             <div class="form-group">
                                 <label for="id_complaint">ID Complaint | Toko | Keluhan</label>
-                                <input type="text" class="form-control" id="id_complaint" name="id_complaint" readonly value="<?= $complaint->id_complaint . ' | ' . $complaint->toko . ' | ' . $complaint->keluhan; ?>">
+                                <input type="text" class="form-control" id="id_complaint" name="id_complaint" readonly value="<?= $complaint->id_complaint . ' | ' . $complaint->kode_toko . ' - ' . $complaint->nama_toko . ' | ' . $complaint->keluhan; ?>">
                             </div>
                             <div class="form-group">
                                 <label for="spareparts">Spareparts</label>

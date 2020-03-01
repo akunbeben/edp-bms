@@ -15,7 +15,8 @@
 <div class="page" style="font-size: 7pt">
 <table style="width: 100%;" class="header">
 <tr>
-<td><h1 style="text-align: center"><?= $title; ?></h1></td>
+<td><h1 style="text-align: right"><?= $title; ?></h1></td>
+<td style="text-align: right"><img src="assets/idm.png" alt="IDM Logo" style="max-width: 100px;"></td>
 </tr>
 </table>
 

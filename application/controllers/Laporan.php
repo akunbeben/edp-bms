@@ -224,7 +224,7 @@ class Laporan extends CI_Controller {
                 'id'            =>null,
                 'doc_id'        => $body,
                 'spareparts'    => $spr->nama,
-                'toko'          => $spr->toko,
+                'toko'          => $spr->kode_toko . ' - ' . $spr->nama_toko,
                 'jumlah'        => $spr->jumlah,
                 'created_at'    => $spr->created_at,
                 'created_by'    => $spr->created_by,
@@ -296,19 +296,23 @@ class Laporan extends CI_Controller {
 
         $body = $this->LaporanModel->getLastID()->row()->id;
 
-        $complaint = $this->ComplaintModel->get()->result();
+        $complaint = $this->ComplaintModel->gets()->result();
         $data = array();
 
-        foreach($complaint as $cmp){ 
-            array_push($data, array(
-                'id'            =>null,
-                'doc_id'        =>$body,
-                'complaint'     =>$cmp->id_complaint,
-                'tanggal'       =>$cmp->tanggal,
-                'toko'          =>$cmp->toko,
-                'keluhan'       =>$cmp->keluhan,
-                'catatan'       =>$cmp->catatan
-            ));
+        if ($complaint == null) {
+            redirect('laporan/laporan-complaint-pending/');
+        } else {
+            foreach($complaint as $cmp){ 
+                array_push($data, array(
+                    'id'            =>null,
+                    'doc_id'        =>$body,
+                    'complaint'     =>$cmp->id_complaint,
+                    'tanggal'       =>$cmp->tanggal,
+                    'toko'          =>$cmp->kode_toko . ' - ' . $cmp->nama_toko,
+                    'keluhan'       =>$cmp->keluhan,
+                    'catatan'       =>$cmp->catatan
+                ));
+            }
         }
         $this->LaporanModel->generate_complaint_pending($data);
         redirect('laporan/laporan-complaint-pending/');
@@ -386,12 +390,14 @@ class Laporan extends CI_Controller {
                 'complaint'         =>$cmp->id_complaint,
                 'tanggal_complaint' =>$cmp->tanggal,
                 'tanggal_selesai'   =>$cmp->diselesaikan,
-                'toko'              =>$cmp->toko,
+                'toko'              =>$cmp->kode_toko . ' - ' . $cmp->nama_toko,
                 'keluhan'           =>$cmp->keluhan,
                 'teknisi'           =>$cmp->nama,
                 'solusi'            =>$cmp->solusi
             ));
         }
+        // dd($data);
+        // die;
         $this->LaporanModel->generate_complaint_selesai($data);
         redirect('laporan/laporan-complaint-selesai/');
     }
@@ -458,7 +464,7 @@ class Laporan extends CI_Controller {
 
         $body = $this->LaporanModel->getLastID()->row()->id;
 
-        $kunjungan = $this->KunjunganModel->get()->result();
+        $kunjungan = $this->KunjunganModel->get($id = null, $this->session->userdata('EDPBMS-nama'))->result();
         $data = array();
 
         foreach($kunjungan as $kj){ 
@@ -466,7 +472,7 @@ class Laporan extends CI_Controller {
                 'id'                =>null,
                 'doc_id'            =>$body,
                 'teknisi'           =>$kj->teknisi,
-                'toko'              =>$kj->toko,
+                'toko'              =>$kj->kode_toko . ' - ' . $kj->nama_toko,
                 'keperluan'         =>$kj->keperluan,
                 'tanggal'           =>$kj->tanggal
             ));

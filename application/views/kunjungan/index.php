@@ -42,7 +42,7 @@
                             <?php foreach ($kunjungan as $kj) : ?>
                                 <tr>
                                     <td><?= $kj->teknisi; ?></td>
-                                    <td><?= $kj->toko; ?></td>
+                                    <td><?= $kj->kode_toko . ' - ' . $kj->nama_toko; ?></td>
                                     <td><?= $kj->keperluan; ?></td>
                                     <td><?= date('d M Y H:i:s', strtotime($kj->tanggal)); ?></td>
                                     <td class="text-center" style="max-width: 100px;">

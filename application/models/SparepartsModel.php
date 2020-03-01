@@ -79,11 +79,12 @@ class SparepartsModel extends CI_Model{
 
     public function get_keluar()
     {
-        $this->db->select('spareparts.nama, spareparts_keluar.jumlah, spareparts_keluar.created_at, spareparts_keluar.created_by, complaint.toko');
+        $this->db->select('spareparts.nama, spareparts_keluar.jumlah, spareparts_keluar.created_at, spareparts_keluar.created_by, toko.nama_toko, toko.kode_toko');
         $this->db->from('spareparts_keluar');
         $this->db->join('spareparts', 'spareparts.id = spareparts_keluar.spareparts');
         $this->db->join('follup', 'spareparts_keluar.follup = follup.id');
         $this->db->join('complaint', 'follup.complaint = complaint.id');
+        $this->db->join('toko', 'toko.id = complaint.toko');
         return $this->db->get();
     }
 }

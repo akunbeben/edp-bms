@@ -111,6 +111,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
+          <?php if ($this->session->userdata('EDPBMS-level') == 1) : ?>
           <li class="nav-header">MASTER DATA</li>
           <li class="nav-item">
             <a href="<?= base_url('teknisi/'); ?>" class="nav-link <?= $this->uri->segment(1) == 'teknisi' ? 'active' : '' ?>">
@@ -128,6 +129,23 @@ scratch. This page gets rid of all links and provides the needed markup only.
               </p>
             </a>
           </li>
+          <li class="nav-item">
+            <a href="<?= base_url('toko/'); ?>" class="nav-link <?= $this->uri->segment(1) == 'toko' ? 'active' : '' ?>">
+              <i class="nav-icon fas fa-building"></i>
+              <p>
+                Toko
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="<?= base_url('users/'); ?>" class="nav-link <?= $this->uri->segment(1) == 'users' ? 'active' : '' ?>">
+              <i class="nav-icon fas fa-users"></i>
+              <p>
+                Users
+              </p>
+            </a>
+          </li>
+          <?php endif; ?>
           <li class="nav-header">COMPLAINT MENU</li>
           <li class="nav-item">
             <a href="<?= base_url('complaint/'); ?>" class="nav-link <?= $this->uri->segment(1) == 'complaint' ? 'active' : '' ?>">
@@ -154,6 +172,42 @@ scratch. This page gets rid of all links and provides the needed markup only.
               </p>
             </a>
           </li>
+          <?php if ($this->session->userdata('EDPBMS-level') == 2) : ?>
+          <li class="nav-header">REPORTS</li>
+          <li class="nav-item">
+            <a href="<?= base_url('laporan/laporan-spareparts-keluar'); ?>" class="nav-link <?= $this->uri->segment(2) == 'laporan-spareparts-keluar' ? 'active' : '' ?>">
+              <i class="nav-icon fas fa-file"></i>
+              <p>
+                Laporan Stok Keluar
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="<?= base_url('laporan/laporan-complaint-pending'); ?>" class="nav-link <?= $this->uri->segment(2) == 'laporan-complaint-pending' ? 'active' : '' ?>">
+              <i class="nav-icon fas fa-file"></i>
+              <p>
+                Laporan Complaint Pending
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="<?= base_url('laporan/laporan-complaint-selesai'); ?>" class="nav-link <?= $this->uri->segment(2) == 'laporan-complaint-selesai' ? 'active' : '' ?>">
+              <i class="nav-icon fas fa-file"></i>
+              <p>
+                Laporan Complaint Selesai
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="<?= base_url('laporan/laporan-kunjungan'); ?>" class="nav-link <?= $this->uri->segment(2) == 'laporan-kunjungan' ? 'active' : '' ?>">
+              <i class="nav-icon fas fa-file"></i>
+              <p>
+                Laporan Kunjungan
+              </p>
+            </a>
+          </li>
+          <?php endif; ?>
+          <?php if ($this->session->userdata('EDPBMS-level') == 1) : ?>
           <li class="nav-header">REPORTS</li>
           <li class="nav-item">
             <a href="<?= base_url('laporan/laporan-spareparts'); ?>" class="nav-link <?= $this->uri->segment(2) == 'laporan-spareparts' ? 'active' : '' ?>">
@@ -203,6 +257,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
               </p>
             </a>
           </li>
+          <?php endif; ?>
           <!-- <li class="nav-item">
             <a href="<?= base_url('laporan/inventori'); ?>" class="nav-link">
               <i class="nav-icon fas fa-file-alt"></i>

@@ -8,6 +8,7 @@ class Complaint extends CI_Controller{
         parent::__construct();
         is_not_login();
         $this->load->model('ComplaintModel');
+        $this->load->model('TokoModel');
     }
 
     public function index()
@@ -23,9 +24,10 @@ class Complaint extends CI_Controller{
     public function tambah()
     {
         $data = [
-            'title'     => 'Complaint',
-            'sub_title' => 'Tambah',
-            'complaint_id' => FormatNo(ComplaintID())
+            'title'         => 'Complaint',
+            'sub_title'     => 'Tambah',
+            'complaint_id'  => FormatNo(ComplaintID()),
+            'toko'          => $this->TokoModel->get()->result()
         ];
 
         $this->form_validation->set_rules('id_complaint', 'ID Complaint', 'required');
@@ -44,7 +46,8 @@ class Complaint extends CI_Controller{
         $data = [
             'title'     => 'Complaint',
             'sub_title' => 'Tambah',
-            'complaint' => $this->ComplaintModel->get($id)->row()
+            'complaint' => $this->ComplaintModel->get($id)->row(),
+            'toko'      => $this->TokoModel->get()->result()
         ];
 
         $this->form_validation->set_rules('id_complaint', 'ID Complaint', 'required');

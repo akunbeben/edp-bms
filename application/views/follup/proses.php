@@ -23,7 +23,7 @@
                             <div class="form-group">
                                 <label for="id_complaint">ID Complaint | Toko | Keluhan</label>
                                 <input type="hidden" id="id" name="id" value="<?= $complaint->id; ?>">
-                                <input type="text" class="form-control" id="id_complaint" name="id_complaint" readonly value="<?= $complaint->id_complaint . ' | ' . $complaint->toko . ' | ' . $complaint->keluhan; ?>">
+                                <input type="text" class="form-control" id="id_complaint" name="id_complaint" readonly value="<?= $complaint->id_complaint . ' | ' . $complaint->kode_toko . ' - ' . $complaint->nama_toko . ' | ' . $complaint->keluhan; ?>">
                             </div>
                             <div class="form-group">
                                 <label for="catatan">Catatan</label>
@@ -31,11 +31,8 @@
                             </div>
                             <div class="form-group">
                                 <label for="teknisi">Teknisi</label>
-                                <select class="form-control select-spareparts" id="teknisi" name="teknisi">
-                                <?php foreach ($teknisi as $tks) : ?>
-                                    <option value="<?= $tks->id; ?>"><?= $tks->nik . ' - ' . $tks->nama; ?></option>
-                                <?php endforeach; ?>
-                                </select>
+                                <input type="hidden" class="form-control" id="teknisi" name="teknisi" value="<?= $teknisi->id; ?>">
+                                <input class="form-control" id="teknisi_nama" name="teknisi_nama" value="<?= $teknisi->nik . ' - '. $teknisi->nama; ?>" readonly>
                             </div>
                             <div class="form-group">
                                 <label for="solusi">Solusi</label>
