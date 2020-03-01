@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 23 Feb 2020 pada 17.53
+-- Waktu pembuatan: 01 Mar 2020 pada 17.15
 -- Versi server: 10.4.11-MariaDB
 -- Versi PHP: 7.4.1
 
@@ -50,7 +50,10 @@ INSERT INTO `complaint` (`id`, `id_complaint`, `tanggal`, `toko`, `keluhan`, `ca
 (17, 'COEDP02200004', '2020-02-23 22:22:00', 1, 'SS', 'SS', 0, 1),
 (18, 'COEDP02200005', '2020-02-23 14:14:00', 1, 'SS', 'SS', 0, 1),
 (19, 'COEDP02200006', '2020-02-24 22:22:00', 3, 'SS', 'SS', 0, 1),
-(20, 'COEDP02200007', '2020-02-24 13:13:00', 1, 'GG', 'GG', 0, 1);
+(20, 'COEDP02200007', '2020-02-24 13:13:00', 1, 'GG', 'GG', 0, 1),
+(21, 'COEDP03200008', '2020-03-01 12:01:00', 1, 'WDCP Tidak dapat digunakan', 'Sudah dari hari kamis', 0, 0),
+(22, 'COEDP03200009', '2020-03-01 21:30:00', 3, 'Fingerscan tidak dapat digunakan', 'kabel putus', 0, 1),
+(23, 'COEDP03200010', '2020-03-01 22:21:00', 3, 'Layar komputer induk mati', 'kabel putus', 0, 0);
 
 -- --------------------------------------------------------
 
@@ -79,7 +82,8 @@ INSERT INTO `follup` (`id`, `complaint`, `teknisi`, `solusi`, `catatan`, `disele
 (20, 17, 1, 'SS', 'SS', '2020-02-23 21:32:44', 0),
 (22, 18, 5, 'Ganti', 'SS', '2020-02-24 00:12:40', 1),
 (23, 19, 5, 'Ganti', 'SS', '2020-02-24 00:24:09', 1),
-(24, 20, 5, 'IN', 'GG', '2020-02-24 00:30:40', 0);
+(24, 20, 5, 'IN', 'GG', '2020-02-24 00:30:40', 0),
+(25, 22, 5, 'Ganti Fingerscan', 'kabel putus', '2020-03-01 21:32:26', 1);
 
 -- --------------------------------------------------------
 
@@ -432,7 +436,7 @@ INSERT INTO `spareparts` (`id`, `kode`, `nama`, `stok`, `kategori`, `satuan`, `h
 (1, 'EDPBMS00001', 'CPU CORE I5', 18, 2, 2, 3000000, 0),
 (2, 'EDPBMS00002', 'KEYBOARD', 6, 2, 2, 100000, 0),
 (3, 'EDPBMS00003', 'LCD Wearness 14\"', 13, 2, 1, 650000, 0),
-(4, 'EDPBMS00004', 'Finger Scanner', 11, 4, 1, 350000, 0),
+(4, 'EDPBMS00004', 'Finger Scanner', 10, 4, 1, 350000, 0),
 (5, 'EDPBMS00005', 'KABEL EDC Mandiri', 34, 3, 2, 15000, 0),
 (6, 'EDPBMS00006', 'Mouse', 4, 2, 2, 25000, 0);
 
@@ -480,7 +484,8 @@ CREATE TABLE `spareparts_keluar` (
 INSERT INTO `spareparts_keluar` (`id`, `spareparts`, `follup`, `jumlah`, `created_at`, `created_by`) VALUES
 (7, 2, 18, 1, '2020-02-23 20:50:36', 'Rizqi Isfahani'),
 (8, 1, 22, 1, '2020-02-24 00:12:47', 'Benny Rahmat'),
-(9, 1, 23, 1, '2020-02-24 00:24:13', 'Benny Rahmat');
+(9, 1, 23, 1, '2020-02-24 00:24:13', 'Benny Rahmat'),
+(10, 4, 25, 1, '2020-03-01 21:32:33', 'Benny Rahmat');
 
 -- --------------------------------------------------------
 
@@ -733,13 +738,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT untuk tabel `complaint`
 --
 ALTER TABLE `complaint`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT untuk tabel `follup`
 --
 ALTER TABLE `follup`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT untuk tabel `kunjungan`
@@ -805,7 +810,7 @@ ALTER TABLE `spareparts_kategori`
 -- AUTO_INCREMENT untuk tabel `spareparts_keluar`
 --
 ALTER TABLE `spareparts_keluar`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT untuk tabel `spareparts_masuk`
