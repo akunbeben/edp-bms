@@ -53,5 +53,5 @@ user 2 :
 ## Endpoints 
 these are simple endpoints for monitoring complaints data, integrated with the internal application of **Indomaret BMS**
 
-- GET: http://localhost/kunjungan/api/complaint
-- GET: http://localhost/kunjungan/api/follow-up
+- GET: http://localhost/edp-bms/api/complaint
+- GET: http://localhost/edp-bms/api/follow-up
