@@ -20,6 +20,20 @@ class FollowupModel extends CI_Model {
         return $this->db->get();
     }
 
+    public function monitoring()
+    {
+        $this->db->select('follup.*, complaint.id_complaint, toko.kode_toko, toko.nama_toko, complaint.status, teknisi.nama, spareparts.nama nama_spareparts');
+        $this->db->from('follup');
+        $this->db->join('complaint', 'follup.complaint = complaint.id');
+        $this->db->join('teknisi', 'follup.teknisi = teknisi.id');
+        $this->db->join('toko', 'complaint.toko = toko.id');
+        $this->db->join('spareparts_keluar', 'follup.id = spareparts_keluar.follup', 'left');
+        $this->db->join('spareparts', 'spareparts_keluar.spareparts = spareparts.id', 'left');
+        $this->db->where('diselesaikan >=', date('Y-m-d', time()) . ' 00:00:00' .')');
+        $this->db->where('diselesaikan <=', date('Y-m-d', time()) . ' 23:59:59' .')');
+        return $this->db->get();
+    }
+
     public function get_byComplaint($id)
     {
         $this->db->select('follup.*, complaint.id_complaint, complaint.toko, complaint.status, teknisi.nama');

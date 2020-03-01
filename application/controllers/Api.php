@@ -32,11 +32,11 @@ class Api extends RestController {
             }
         }
 
-    } // end of function
+    } 
 
     public function follow_up_get()
     {
-        $follup = $this->FollowupModel->get()->result();
+        $follup = $this->FollowupModel->monitoring()->result();
 
         $id = $this->get('id');
 
@@ -44,14 +44,17 @@ class Api extends RestController {
             if ($follup == NULL) {
                 $this->response( [
                     'status' => false,
-                    'message' => 'Tidak ada data Follow-up ditemukan.'
+                    'timestamp' => date('Y-m-d H:i:s', time()),
+                    'message' => 'Belum ada complaint yang di follow-up hari ini.'
                 ], 404 );
             } else {
                 $this->response([
                     'status'    => true,
+                    'timestamp' => date('Y-m-d H:i:s', time()),
                     'data'      => $follup
                 ], 200);
             }
         }
     }
+
 }
