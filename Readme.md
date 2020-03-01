@@ -31,6 +31,9 @@ Extract or clone into
 or 
 \htdocs\..
 
+Install Dependencies
+run composer command "composer install"
+
 Importing database
 create new database named "kunjungan"
 then import the database from file "..\edp-bms\kunjungan.sql"
